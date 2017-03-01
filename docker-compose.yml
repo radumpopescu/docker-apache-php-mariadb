@@ -1,0 +1,24 @@
+version: "2"
+services:
+  php-apache:
+    build:
+      context: .
+      dockerfile: ./apache.php.dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /srv/www:/var/www
+      - ./sites-enabled:/etc/apache2/sites-enabled
+      - ./letsencrypt:/etc/letsencrypt
+      - ./logs:/var/log/apache2
+      - ./php.ini:/usr/local/etc/php/php.ini
+    privileged: true
+  db:
+    image: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+    volumes:
+      - /srv/mariadb:/var/lib/mysql

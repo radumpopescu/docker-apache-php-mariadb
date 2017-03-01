@@ -1,0 +1,8 @@
+<VirtualHost *:80>
+    ServerName localhost
+    DocumentRoot /var/www/
+
+    #LogLevel info ssl:warn
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
